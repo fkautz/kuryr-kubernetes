@@ -444,9 +444,10 @@ function run_k8s_kubelet {
 }
 
 function run_kuryr_kubernetes {
+    local python_bin=$(which python)
     wait_for "Kubernetes API Server" "$KURYR_K8S_API_URL"
     run_process kuryr-kubernetes \
-        "python ${KURYR_HOME}/scripts/run_server.py  \
+        "$python_bin ${KURYR_HOME}/scripts/run_server.py  \
             --config-file $KURYR_CONFIG"
 }
 
