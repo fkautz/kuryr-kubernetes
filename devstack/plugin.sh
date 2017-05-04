@@ -428,7 +428,7 @@ function run_k8s_kubelet {
     local command
 
     sudo mkdir -p "${KURYR_HYPERKUBE_DATA_DIR}/"{kubelet,kubelet.cert}
-    command="sudo $KURYR_HYPERKUBE_BINARY kubelet\
+    command="$KURYR_HYPERKUBE_BINARY kubelet\
         --allow-privileged=true \
         --api-servers=$KURYR_K8S_API_URL \
         --v=2 \
@@ -440,7 +440,7 @@ function run_k8s_kubelet {
         --cert-dir=${KURYR_HYPERKUBE_DATA_DIR}/kubelet.cert \
         --root-dir=${KURYR_HYPERKUBE_DATA_DIR}/kubelet"
     wait_for "Kubernetes API Server" "$KURYR_K8S_API_URL"
-    run_process kubelet "$command"
+    run_process kubelet "$command" root root
 }
 
 function run_kuryr_kubernetes {
