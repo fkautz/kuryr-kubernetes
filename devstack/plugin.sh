@@ -250,7 +250,7 @@ function prepare_docker {
 function run_docker {
     local dockerd_bin=$(which dockerd)
     run_process docker \
-        "$dockerd_bin" "--debug=true \
+        "$dockerd_bin --debug=true \
             -H unix://$KURYR_DOCKER_ENGINE_SOCKET_FILE" "root" "root"
     # We put the stack user as owner of the socket so we do not need to
     # run the Docker commands with sudo when developing.
