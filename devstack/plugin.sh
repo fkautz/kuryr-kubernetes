@@ -23,7 +23,7 @@ function run_container {
     "$docker_bin" run --name "$name" --detach "$@"
 
     run_process "$name" \
-        "docker logs -f $name"
+        "$docker_bin logs -f $name"
 }
 
 function stop_container {
